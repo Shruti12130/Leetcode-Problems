@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int dp[101][101];
+    int dp[101][4];
     
     int solve(int idx, int prev, vector<int> &nums) {
         int n=nums.size();
