@@ -16,13 +16,13 @@ public:
         int y=stones[ind]+prev;
         int z=stones[ind]+prev+1;
         
-        if(x>stones[ind] && mp.find(x) != mp.end()) {
+        if(x>stones[ind] && mp.count(x)) {
             ans |= solve(mp[x], prev-1, n, stones);
         }
-        if(y>stones[ind] && mp.find(y) != mp.end()) {
+        if(y>stones[ind] && mp.count(y)) {
             ans |= solve(mp[y], prev, n, stones);
         }
-        if(z>stones[ind] && mp.find(z) != mp.end()) {
+        if(z>stones[ind] && mp.count(z)) {
             ans |= solve(mp[z], prev+1, n, stones);
         }
         return dp[ind][prev]=ans;
