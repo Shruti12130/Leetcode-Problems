@@ -1,23 +1,35 @@
 class Solution {
 public:
     int minTaps(int n, vector<int>& ranges) {
-        vector<int> arr(n+1);
+        vector<vector<int>> intervals(n+1, vector<int>(2));
         
         for(int i=0;i<=n;i++) {
-            int k=max(0, i-ranges[i]);
-            arr[k]=max(arr[k], i+ranges[i]);
+            intervals[i][0]=max(0, i-ranges[i]);
+            intervals[i][1]=i+ranges[i];
         }
         
-        int i=0, last=0, maxDist=0, ans=0;
-        while(i<arr.size() && last<n) {
-            ans++;
-            while(i<arr.size() && i<=last) {
-                maxDist=max(maxDist, arr[i++]);
+        sort(intervals.begin(), intervals.end(), [](auto &a, auto &b){
+            if(a[0] == b[0]) {
+                return a[1] > b[1];
             }
-            if(last==maxDist) {
+            return a[0]<b[0];
+        });
+        
+        
+        int i=1, last=intervals[0][1], ans=1;
+        while(i<=n) {
+            if(last>=n) {
+                return ans;
+            }
+            int k=last; 
+            while(i<=n && intervals[i][0]<=last) {
+                k=max(k, intervals[i++][1]);
+            }
+            if(k==last) {
                 return -1;
             }
-            last=maxDist;
+            last=k;
+            ans++;
         }
         return ans;
     }
