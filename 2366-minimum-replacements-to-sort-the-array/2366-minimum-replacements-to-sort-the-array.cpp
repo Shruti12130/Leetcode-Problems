@@ -14,7 +14,7 @@ public:
                 temp++;
                 prev=nums[i]/temp;
             }
-            //(temp-1) is the minimum time of splits
+            //(temp-1) is the minimum no of splits
             ans+=(temp-1);
         }
         return ans;
