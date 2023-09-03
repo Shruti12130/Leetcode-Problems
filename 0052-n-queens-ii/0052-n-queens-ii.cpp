@@ -1,7 +1,5 @@
 class Solution {
 public:
-    vector<vector<string>> ans;
-    
     bool canPlaceQ(int row, int col, vector<string> &temp) {
         int r=row, c=col, n=temp.size();
         while(r>=0 && c>=0) {
@@ -31,19 +29,20 @@ public:
         return true;
     }
     
-    void solve(int col, int n, vector<string> &temp) {
+    int solve(int col, int n, vector<string> &temp) {
         if(col==n) {
-            ans.push_back(temp);
-            return;
+            return 1;
         }
         
+        int ans=0;
         for(int row = 0; row < n; row++) {
             if(canPlaceQ(row, col, temp)) {
                 temp[row][col]='Q';
-                solve(col+1, n, temp);
+                ans += solve(col+1, n, temp);
                 temp[row][col]='.';
             } 
         }
+        return ans;
     }
     
     int totalNQueens(int n) {
@@ -55,7 +54,6 @@ public:
         for(int i=0;i<n;i++) {
             temp.push_back(s);
         }
-        solve(0, n, temp);
-        return ans.size();
+        return solve(0, n, temp);
     }
 };
