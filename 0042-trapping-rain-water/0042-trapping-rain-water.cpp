@@ -2,7 +2,7 @@ class Solution {
 public:
     int trap(vector<int>& height) {
         int n=height.size();
-        //Maintain 2 arrays, mxL and mxR that stores the max eleemnts on either side.
+        
         vector<int> mxL(n), mxR(n);
         mxL[0]=height[0];
         mxR[n-1]=height[n-1];
