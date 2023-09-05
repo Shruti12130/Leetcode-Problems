@@ -5,18 +5,14 @@ public:
     
     void solve(int i, string s, string digits, vector<string> &letters) {
         if(i==n) {
-            if(s.length()==n) {
-                ans.push_back(s);
-            }
+            ans.push_back(s);
             return;
         }
         
-        for(int j=i;j<n;j++) {
-            int k=digits[j]-'0';
-            string str=letters[k];
-            for(auto x: str) {
-                solve(j+1, s+x, digits, letters);
-            }
+        int k=digits[i]-'0';
+        string str=letters[k];
+        for(auto x: str) {
+            solve(i+1, s+x, digits, letters);
         }
     }
     
