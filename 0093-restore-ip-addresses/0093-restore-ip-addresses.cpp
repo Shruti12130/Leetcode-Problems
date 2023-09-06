@@ -17,13 +17,9 @@ public:
     }
     
     void solve(int i, int parts, string str, string &s) {
-        if(parts==4 || i==n) {
-            if(parts==4 && i==n) {
-                str.pop_back();
-                if(str.length()==n+3) {
-                    ans.push_back(str);
-                }
-            }
+        if(parts==4 && i==n) {
+            str.pop_back();
+            ans.push_back(str);
             return;
         }
         
