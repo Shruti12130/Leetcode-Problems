@@ -15,26 +15,22 @@ public:
         if(left==right) {
             return head;
         }
-        ListNode* dummy=new ListNode(0);
+        ListNode* dummy=new ListNode(0), *temp;
         dummy->next=head;
-        ListNode* last=dummy, *curr=head;
-        int c=1;
-        while(c<left){
-            last=curr;
-            curr=curr->next;
-            c++;
+        temp=dummy;
+        
+        for(int i=0;i<left-1;i++) {
+            temp=temp->next;
         }
-        ListNode* prev=NULL, *next=NULL;
-        while(c<right){
+        ListNode* prev=temp, *curr=temp->next, *next;  
+        
+        for(int i=0;i<right-left;i++) {
             next=curr->next;
-            curr->next=prev;
-            prev=curr;
-            curr=next;
-            c++;
+            curr->next=next->next;
+            next->next=prev->next;
+            prev->next=next;
         }
-        last->next->next=curr->next;
-        curr->next=prev;
-        last->next=curr;
+        
         return dummy->next;
     }
 };
