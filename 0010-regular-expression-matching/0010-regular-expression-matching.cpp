@@ -7,18 +7,6 @@ public:
             return true;
         }
         if(n>0 && m<=0) {
-            char ch=p[0];
-            if(p[1]=='*'){
-                int i=n;
-                while(i>=0){
-                    if(s[i-1]==ch) {
-                        i--;
-                    } else {
-                        return false;
-                    }
-                }
-                return true;
-            }
             return false;
         }
         if(n<=0 && m>0) {
