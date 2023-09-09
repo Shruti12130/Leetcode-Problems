@@ -10,20 +10,17 @@ public:
         }
         
         char ch=temp[ind];
-        if(!(temp[ind]>='0' && temp[ind]<='9')) {
+        solve(ind+1, temp);
+        if((ch>='a' && ch<='z') || (ch>='A' && ch<='Z')) {
             if(ch>='a' && ch<='z') {
-                solve(ind+1, temp);
                 temp[ind]=ch-32;
                 solve(ind+1, temp);
                 temp[ind]=ch;
             } else {
-                solve(ind+1, temp);
                 temp[ind]=ch+32;
                 solve(ind+1, temp);
                 temp[ind]=ch;
             }
-        } else {
-            solve(ind+1, temp);
         }
         
     }
