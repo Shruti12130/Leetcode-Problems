@@ -1,7 +1,6 @@
 class Solution {
 public:
     unordered_map<int, multiset<int>> graph;
-    vector<int> v;
     vector<vector<int>> ans;
     
     void dfs(int num) {
@@ -10,8 +9,8 @@ public:
             int x=*st.begin();
             st.erase(st.begin());
             dfs(x);
+            ans.push_back({num, x});
         }
-        v.push_back(num);
     }
     
     vector<vector<int>> validArrangement(vector<vector<int>>& pairs) {
@@ -29,16 +28,10 @@ public:
                 break;
             }
         }
-        if(k!=-1) {
-            dfs(k);
-        } else {
-            dfs(pairs[0][0]);
-        }
         
-        reverse(v.begin(), v.end());
-        for(int i=1;i<v.size();i++) {
-            ans.push_back({v[i-1], v[i]});
-        }
+        (k!=-1) ? dfs(k) : dfs(pairs[0][0]);
+        
+        reverse(ans.begin(), ans.end());
         return ans;
     }
 };
