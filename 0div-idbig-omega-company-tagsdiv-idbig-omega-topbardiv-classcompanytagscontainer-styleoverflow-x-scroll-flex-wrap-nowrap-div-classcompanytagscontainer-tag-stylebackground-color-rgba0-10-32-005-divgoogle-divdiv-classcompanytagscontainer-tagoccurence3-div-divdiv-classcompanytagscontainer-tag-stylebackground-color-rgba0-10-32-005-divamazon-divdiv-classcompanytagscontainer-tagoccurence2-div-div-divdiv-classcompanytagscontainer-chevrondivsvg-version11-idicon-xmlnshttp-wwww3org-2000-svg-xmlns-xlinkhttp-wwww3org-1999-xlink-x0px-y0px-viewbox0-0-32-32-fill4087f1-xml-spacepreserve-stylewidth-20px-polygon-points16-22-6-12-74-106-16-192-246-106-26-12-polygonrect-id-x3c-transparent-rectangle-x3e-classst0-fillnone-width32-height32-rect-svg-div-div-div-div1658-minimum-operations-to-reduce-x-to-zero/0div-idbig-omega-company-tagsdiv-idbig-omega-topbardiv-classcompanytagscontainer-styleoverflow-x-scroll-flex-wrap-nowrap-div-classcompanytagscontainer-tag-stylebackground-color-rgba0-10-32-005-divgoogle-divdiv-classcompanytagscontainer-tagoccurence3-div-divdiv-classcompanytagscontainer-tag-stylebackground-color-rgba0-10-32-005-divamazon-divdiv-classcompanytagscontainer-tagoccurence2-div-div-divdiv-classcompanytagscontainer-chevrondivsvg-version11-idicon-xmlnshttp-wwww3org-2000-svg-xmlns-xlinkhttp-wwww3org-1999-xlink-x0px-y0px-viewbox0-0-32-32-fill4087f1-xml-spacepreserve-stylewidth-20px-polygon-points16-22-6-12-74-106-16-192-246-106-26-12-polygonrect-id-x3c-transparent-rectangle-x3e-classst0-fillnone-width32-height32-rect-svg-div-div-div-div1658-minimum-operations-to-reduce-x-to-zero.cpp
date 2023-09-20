@@ -1,26 +1,28 @@
 class Solution {
 public:
     int minOperations(vector<int>& nums, int x) {
-        int n=nums.size();
-        unordered_map<int, int> mp;
-        int prefixsum=0, suffixsum=0, ans=INT_MAX;
-        for(int i=0;i<n;i++) {
-            prefixsum+=nums[i];
-            if(prefixsum==x) {
-                ans=min(ans, i+1);
-            }
-            mp[prefixsum]=i+1;
-        }
+        int n = nums.size();
+        int sum=0;
         
-        for(int i=n-1;i>=0;i--) {
-            suffixsum+=nums[i];
-            if(suffixsum==x) {
-                ans=min(ans, n-i);
+        for(int i=0;i<n;i++)
+            sum+=nums[i];
+    
+        int s=sum-x;
+        if(s==0)  return n;
+        if(s<0)  return -1;
+        
+        int i=0, j=0, c=0, k=0;
+        while(j<n){
+            c+=nums[j];
+            while(c>=s){
+                if(c==s) {
+                    k=max(k, j-i+1);
+                }
+                c-=nums[i++];
             }
-            if(mp[x-suffixsum]>0 && i+1>mp[x-suffixsum]) {
-                ans=min(ans, (n-i)+mp[x-suffixsum]);
-            }
+            j++;
         }
-        return (ans==INT_MAX) ? -1 : ans;
+        if(k==0)  return -1;
+        return n-k;
     }
 };
