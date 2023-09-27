@@ -12,13 +12,15 @@ public:
             i++;
         }
         
+        string ans="";
         for(int j=i-1;j>=0;j--) {
             if(s[j]>='2' && s[j]<='9') {
                 lengthOfDecodedString /= (s[j]-'0');
                 k %= lengthOfDecodedString;
             } else {
                 if(k==0 || k==lengthOfDecodedString) {
-                    return string("") + s[j];
+                    ans+=s[j];
+                    return ans;
                 }
                 lengthOfDecodedString--;
             }
