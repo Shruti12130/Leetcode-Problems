@@ -1,8 +1,10 @@
 class MyHashMap {
 public:
-    unordered_map<int, int> mp;
+    int mp[1000001];
     MyHashMap() {
-        
+        for(int i=0;i<=1000000;i++) {
+            mp[i]=-1;
+        }
     }
     
     void put(int key, int value) {
@@ -10,17 +12,11 @@ public:
     }
     
     int get(int key) {
-        int value;
-        if(mp.find(key)==mp.end()) {
-            value=-1;
-        } else {
-            value = mp[key];
-        }
-        return value;
+        return mp[key];
     }
     
     void remove(int key) {
-        mp.erase(key);
+        mp[key]=-1;
     }
 };
 
