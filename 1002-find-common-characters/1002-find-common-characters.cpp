@@ -24,10 +24,8 @@ public:
             }
             int num=mn;
             char ch=j+'a';
-            string s="";
-            s+=ch;
             while(num--) {
-                ans.push_back(s);
+                ans.push_back(string(1, ch));
             }
         }
         
